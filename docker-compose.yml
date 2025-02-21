@@ -9,5 +9,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      - /app/.next  # Volume anônimo para evitar cache no host
+    # user: "node"
     environment:
       - NODE_ENV=development
