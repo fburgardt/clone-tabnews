@@ -10,6 +10,9 @@ services:
       - .:/app
       - /app/node_modules
       - /app/.next  # Volume anônimo para evitar cache no host
-    # user: "node"
+    user: "root"
     environment:
-      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - NEXT_DISABLE_FILE_SYSTEM_CACHE=true  # Impede que Next.js guarde cache dos arquivos
+    command: sh -c "rm -rf .next && npm run dev"  # Sempre remove cache antes de rodar
