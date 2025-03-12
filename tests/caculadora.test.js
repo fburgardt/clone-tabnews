@@ -1,3 +1,6 @@
-test("espero que 1 seja 1", () => {
-  expect(1).toBe(1);
+const calculadora = require("../models/calculadora.js");
+
+const result = calculadora.somar(2, 2);
+test("somar 2 + 2 deveria retornar 4", () => {
+  expect(result).toBe(4);
 });
