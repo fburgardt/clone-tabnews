@@ -7,16 +7,20 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app:cached
+      - .:/app
+      # - .:/app:cached
       # - /app/node_modules
       # - /app/.next  # Volume anônimo para evitar cache no hosts
     user: "node"
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-      - WATCHPACK_POLLING=true
-      - NEXT_DISABLE_FILE_SYSTEM_CACHE=true # Impede que Next.js guarde cache dos arquivos
+    # environment:
+    #   - CHOKIDAR_USEPOLLING=true
+    #   - WATCHPACK_POLLING=true
+    #   - NEXT_DISABLE_FILE_SYSTEM_CACHE=true # Impede que Next.js guarde cache dos arquivos
+    #   - JEST_WORKER_ID=1 # Força Jest a rodar corretamente dentro do Docker
     # command: sh -c "sleep 2 && rm -rf .next && npm run dev"  # Sempre remove cache antes de rodar
 
     # com estes removidos, só foi preciso:
     # --- npm install
     # --- npm run dev
+    # command: sh -c "npm run dev & npm run test:watch"
+    command: sh -c "npm run dev"
